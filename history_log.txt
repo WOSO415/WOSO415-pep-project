@@ -1,10 +1,7 @@
-commit 84c62e3174fafbe170179217cf4b77c4e6af8e4a
+commit 29a2a67f4699653bdc72386b19fa2a16f563de67
 Author: Matt Worthy <mattworthy01@gmail.com>
-Date:   Mon Jan 30 19:54:13 2023 +0000
+Date:   Tue Jan 31 05:06:07 2023 +0000
 
-    first save
-    
-            modified:   src/main/java/Controller/SocialMediaController.java
-            modified:   src/main/java/Service/todo.md
+    working on SM Controller
 
- 2 files changed, 5 insertions(+), 2 deletions(-)
+ 4 files changed, 1677 insertions(+), 1 deletion(-)
