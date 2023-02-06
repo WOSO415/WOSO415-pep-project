@@ -2,7 +2,7 @@ package DAO;
 
 import io.javalin.Javalin;
 
-public class accountDAO {
+public class AccountDAO {
     
 
     /**

@@ -1,5 +1,8 @@
 package Controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import Service.AccountService;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
@@ -10,40 +13,56 @@ import io.javalin.http.Handler;
  * refer to prior mini-project labs and lecture materials for guidance on how a controller may be built.
  */
 public class SocialMediaController {
-
-    public class SocialController {
-        SocialService socialService;
-        public SocialController() {
-            socialService = new SocialService();
-        }
+   
+    Javalin app;
+    public AccountService socialMediaService;
+    public SocialMediaController() {
+        app = Javalin.create();
+        socialMediaService = new AccountService();
     }
+    
+        
+
+    
 
 
 
 
 
 
-    pr
+    
     /**
      * In order for the test cases to work, you will need to write the endpoints in the startAPI() method, as the test
      * suite must receive a Javalin object from this method.
      * @return a Javalin app object which defines the behavior of the Javalin controller.
      */
     public Javalin startAPI() {
-        Javalin app = Javalin.create();
-        Handler postRegister;
-        app.post("localhost:8080/register", postRegister);
-        Handler postLogin;
-        app.post("localhost:8080/login", postLogin);
-        Handler postMessages;
-        app.post("/messages", postMessages);
-        Handler getAllmessages;
-        app.get("/messages", getAllmessages);
-        Handler getMessagesByMessage_id;
+        
+        
+        app.post("localhost:8080/register", ctx -> {
+
+        });
+       
+        app.post("localhost:8080/login", ctx -> {
+
+        });
+        
+        app.post("/messages", ctx -> {
+            // post message
+            ObjectMapper om = new ObjectMapper();
+            SocialMediaController social = om.readValue(ctx.body(), SocialMediaController.class);
+            MessageService.insertMessage(message);
+            ctx.json(ctx);
+        });
+        //*get all messages//*
+        app.get("/messages", ctx -> {
+            List<Social> message = SocialMediaController.getAllMessages();
+        });
+        
         app.get("/messages{message_id}", getMessagesByMessage_id);
-        Handler deleteByMessage_id;
+        
         app.delete("/messages{message_id}", deleteByMessage_id);
-        Handler postMessagesByMessage_id;
+        
         app.patch("/messages/{message_id}", postMessagesByMessage_id);
         
         app.get("/accounts/{account_id}/messages}", getMessagesByAccount_id);
@@ -56,6 +75,12 @@ public class SocialMediaController {
     
 
     
+
+
+
+
+
+
 
     /**
      * This is an example handler for an example endpoint.
