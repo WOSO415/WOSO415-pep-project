@@ -1,7 +1,7 @@
-commit 87434fec8f1dbd46c98b5071554a8f691a1b6430
+commit 4489ef93a10691c1ef9d857262209f4b0ac7d2bf
 Author: Matt Worthy <mattworthy01@gmail.com>
-Date:   Mon Feb 6 23:16:35 2023 +0000
+Date:   Tue Feb 7 00:28:29 2023 +0000
 
-    worked on API
+    still working trying to get my endpoints right
 
- 10 files changed, 2985 insertions(+), 133 deletions(-)
+ 6 files changed, 81 insertions(+), 2946 deletions(-)

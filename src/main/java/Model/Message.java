@@ -139,6 +139,6 @@ public class Message {
                 ", time_posted_epoch=" + time_posted_epoch +
                 '}';
     }
-    public void add(Message message) {
+    public static void add(Message message) {
     }
 }
