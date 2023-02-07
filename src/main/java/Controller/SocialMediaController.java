@@ -4,13 +4,12 @@ package Controller;
 
 
 
-import java.util.List;
+
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import Model.Account;
-import Model.Message;
 import Service.AccountService;
 import Service.MessageService;
 import io.javalin.Javalin;
@@ -53,20 +52,10 @@ public class SocialMediaController {
         app.post("/register", this::postUserHandler);     
         
         app.start(8080);
-        
+        return app;
         }
-
-        
-    
-
-    
-
-
-
-
-
-
-
+  
+   
     /**
      * This is an example handler for an example endpoint.
      * @param context The Javalin Context object manages information about both the HTTP request and response.
@@ -75,7 +64,7 @@ public class SocialMediaController {
         ObjectMapper mapper = new ObjectMapper();
         Account user = mapper.readValue(ctx.body(), Account.class);
         Account addedUser = accountService.addUser(user);
-        if(user != null){
+        if(addedUser != null){
             ctx.json(mapper.writeValueAsString(addedUser));
         }else{
             ctx.status(400);
