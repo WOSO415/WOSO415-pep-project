@@ -23,10 +23,9 @@ import io.javalin.http.Context;
 public class SocialMediaController {
     AccountService accountService;
     MessageService messageService;
-    
     public SocialMediaController(){
-        this.accountService = new AccountService();
-        this.messageService = new MessageService();
+        accountService = new AccountService();
+        messageService = new MessageService();
     }
    
         
@@ -51,7 +50,7 @@ public class SocialMediaController {
         //*get all messages//*
         app.post("/register", this::postUserHandler);     
         
-        app.start(8080);
+        
         return app;
         }
   

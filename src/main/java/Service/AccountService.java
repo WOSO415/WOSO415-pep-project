@@ -1,5 +1,8 @@
 package Service;
 
+
+
+
 import DAO.AccountDAO;
 import Model.Account;
 
@@ -10,11 +13,25 @@ public class AccountService {
     public AccountService(){
         accountDAO = new AccountDAO();
     }
-    public Account addUser(Account user) {
-        if (accountDAO.insertUser(user) != null) {
-         return null;
-        } else {
-         return accountDAO.insertUser(user);
-        }
+
+    public AccountService(AccountDAO accountDAO) {
+        
+        this.accountDAO = accountDAO;
+    }
+
+    public Account addUser(Account account) {
+        if (account.getUsername() == null || account.getPassword() == null) {
+            return null;
+        } else if (account.password.length() < 4) {
+            return null;
+        } else if (account.username.length() < 1) {
+            return null;
+        } 
+        
+        return accountDAO.insertUser(account);
+        
+        
+        
      }
 }
+
