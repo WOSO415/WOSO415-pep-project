@@ -1,7 +1,7 @@
-commit 4489ef93a10691c1ef9d857262209f4b0ac7d2bf
+commit e687db302bc2bc67025ae778630222ba2dcb91c9
 Author: Matt Worthy <mattworthy01@gmail.com>
-Date:   Tue Feb 7 00:28:29 2023 +0000
+Date:   Tue Feb 7 03:56:52 2023 +0000
 
-    still working trying to get my endpoints right
+    hopefully I am working in the right direction
 
- 6 files changed, 81 insertions(+), 2946 deletions(-)
+ 7 files changed, 3018 insertions(+), 84 deletions(-)
