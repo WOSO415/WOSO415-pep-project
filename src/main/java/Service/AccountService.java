@@ -28,10 +28,14 @@ public class AccountService {
             return null;
         } 
         
-        return accountDAO.insertUser(account);
+        return accountDAO.insertUser(account);           
+     }
+
+     public boolean userLogin(Account login) {
+       
         
-        
-        
+        return accountDAO.Login();
+
      }
 }
 
