@@ -21,19 +21,22 @@ public class MessageDAO {
         Connection connection = ConnectionUtil.getConnection();
         try {
        
-            String sql = "insert into message (message_text, posted_by) values (?, ?)" ;
+            String sql = "insert into message (posted_by, message_text, time_posted_epoch) values (?, ?, ?)" ;
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
     
             
             
-            preparedStatement.setString(1, message.getMessage_text());
-            preparedStatement.setInt(2, message.getPosted_by());
+            preparedStatement.setInt(1, message.getPosted_by());
+
+            preparedStatement.setString(2, message.getMessage_text());
+            
+            preparedStatement.setLong(3, message.getTime_posted_epoch());
     
             preparedStatement.executeUpdate();
-            ResultSet pkeyResultSet = preparedStatement.getGeneratedKeys();
-            if(pkeyResultSet.next()){
-                int generated_message_id = (int) pkeyResultSet.getLong(1);
-                return new Message(generated_message_id, message.getMessage_text(), message.getPosted_by());
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            if(rs.next()){
+                int generated_message_id = (int) rs.getLong(1);
+                return new Message(generated_message_id, message.getPosted_by(),message.getMessage_text(), message.getTime_posted_epoch());
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -59,10 +62,63 @@ public List<String> getAllMessages(){
     }
     System.out.println(message);
     return message;
+}
+
+////////////////////////////*Get Message By Id*////////////////////////////
+public Message MessageById(int id){
+    Connection connection = ConnectionUtil.getConnection();
+    try {
+        //Write SQL logic here
+        String sql = "select * from message where message_id = ?";
+        
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        //write preparedStatement's setString and setInt methods here.
+        preparedStatement.setInt(1, id);
+        ResultSet rs = preparedStatement.executeQuery();
+        while(rs.next()){
+            Message message = new Message(
+                rs.getInt("message_id"),
+                rs.getInt("posted_by"),
+                rs.getString("message_text"),
+                rs.getLong("time_posted_epoch"));
+          
+            return message;
+        }
+    }catch(SQLException e){
+        System.out.println(e.getMessage());
+    }
+    return null;
+}
 
 
+public Message deleteMessage(Message message) {
+
+    Connection connection = ConnectionUtil.getConnection();
+    try {
+   
+        String sql = "insert into message (message_text, posted_by) values (?, ?)" ;
+        PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+        
+        
+        preparedStatement.setString(1, message.getMessage_text());
+        preparedStatement.setInt(2, message.getPosted_by());
+
+        preparedStatement.executeUpdate();
+        ResultSet pkeyResultSet = preparedStatement.getGeneratedKeys();
+        if(pkeyResultSet.next()){
+            int generated_message_id = (int) pkeyResultSet.getLong(1);
+            return new Message(generated_message_id, message.getMessage_text(), message.getPosted_by());
+        }
+    }catch(SQLException e){
+        System.out.println(e.getMessage());
+    }
+    return null;
 
 }
+
+
 }
 
 

@@ -6,7 +6,7 @@ package Controller;
 
 
 
-import java.util.Map;
+
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,7 +17,7 @@ import Service.AccountService;
 import Service.MessageService;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
-import io.javalin.http.Handler;
+
 
 /**
  * TODO: You will need to write your own endpoints and handlers for your controller. The endpoints you will need can be
@@ -25,9 +25,10 @@ import io.javalin.http.Handler;
  * refer to prior mini-project labs and lecture materials for guidance on how a controller may be built.
  */
 public class SocialMediaController {
-    private static final String ViewUtil = null;
+    
     AccountService accountService;
     MessageService messageService;
+
     public SocialMediaController(){
         accountService = new AccountService();
         messageService = new MessageService();
@@ -44,15 +45,23 @@ public class SocialMediaController {
        
 ////////////////////////////*Registration*////////////////////////////
         app.post("/register", this::postUserHandler);     
-////////////////////////////*Login*////////////////////////////
-        app.post("/login", this::postLoginHandler);
-////////////////////////////*Create Message*////////////////////////////
-        app.post("/messages", this::postMessagesHandler);
-////////////////////////////*Get All Messages*////////////////////////////
-        app.get("/messages", this::getAllMessagesHandler);
 
+////////////////////////////*Login*///////////////////////////////////
+        app.post("/login", this::postLoginHandler);
+
+////////////////////////////*Create Message*//////////////////////////
+        app.post("/messages", this::postMessagesHandler);
+
+////////////////////////////*Get All Messages*////////////////////////
+        app.get("/messages", this::getAllMessagesHandler);
         
-        
+////////////////////////////*Get MessagesByID*////////////////////////        
+        app.get("/messages/{message_id}", this::getMessageByIdHandler);
+
+
+    
+       
+
         
         return app;
         }
@@ -92,9 +101,9 @@ public class SocialMediaController {
         ObjectMapper mapper = new ObjectMapper();
         Message message = mapper.readValue(ctx.body(), Message.class);
         
-        Message newMessage = MessageService.newMessage(message);
+        Message newMessage = messageService.createMessage(message);
         System.out.println(newMessage);
-        if(newMessage == null){
+        if(newMessage == null) {
             ctx.status(400);
         }else{
             ctx.json(mapper.writeValueAsString(newMessage));
@@ -105,7 +114,16 @@ public class SocialMediaController {
 private void getAllMessagesHandler(Context ctx){
     ctx.json(messageService.getAllMessagesList());
 }
-    };
- 
 
+////////////////////////////*Get Messages By Id*////////////////////////////
+private void getMessageByIdHandler(Context ctx) {
+
+    Message ctxCheck = messageService.getMessageById(Integer.parseInt(ctx.pathParam("message_id")));
+    if (ctxCheck != null) {
+    ctx.json(ctxCheck);
+    }
+    ctx.status(200);
+}
+ 
+}
 
