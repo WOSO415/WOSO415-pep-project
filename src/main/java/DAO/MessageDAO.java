@@ -9,9 +9,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.h2.util.json.JSONObject;
+
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
+
 import Model.Message;
 
 import Util.ConnectionUtil;
+import net.bytebuddy.dynamic.scaffold.MethodRegistry.Prepared;
 
 public class MessageDAO {
     
@@ -92,31 +97,35 @@ public Message MessageById(int id){
 }
 
 ///////////////*Delete Message*///////////////////////
-public Message deleteByID(int id){
+public Message deleteByID(String message_id){
     Connection connection = ConnectionUtil.getConnection();
     try {
         //Write SQL logic here
-        String sql = "delete from message where message_id = ?";
+        String sql = "select message_text from message where message_id = ?";
         
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        PreparedStatement selectStatement = connection.prepareStatement(sql);
 
         //write preparedStatement's setString and setInt methods here.
-        preparedStatement.setInt(1, id);
-        ResultSet rs = preparedStatement.executeQuery();
-        while(rs.next()){
-            Message message = new Message(
-                rs.getInt("message_id"),
-                rs.getInt("posted_by"),
-                rs.getString("message_text"),
-                rs.getLong("time_posted_epoch"));
-          
-            return message;
-        }
-    }catch(SQLException e){
-        System.out.println(e.getMessage());
+        selectStatement.setString(1, message_id);
+        ResultSet rs = selectStatement.executeQuery();
+        if (rs.next()) {
+           String messageText = rs.getString("message_text");
+            PreparedStatement deleteStatement = connection.prepareStatement("delete from message where message_id = ?");
+            deleteStatement.setString(1, message_id);
+            deleteStatement.executeUpdate();
+
+            connection.close();
+
+            ctx.status(200);
+            ctx.result(new JSONObject.put("message_text", messageText).toString());
+        } else {
+            ctx.status(404);
+            ctx.result("Message not found");
+                  
+        });
+
     }
-    return null;
-}
+
 
 ///////////////*Update Message*///////////////////////
 public Message updateByID(int id, Message updateMessage){
