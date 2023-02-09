@@ -3,6 +3,8 @@ package Service;
 
 
 
+import org.eclipse.jetty.util.security.Password;
+
 import DAO.AccountDAO;
 import Model.Account;
 
@@ -34,7 +36,7 @@ public class AccountService {
      public boolean userLogin(Account login) {
        
         
-        return accountDAO.Login();
+        return userLogin(login);
 
      }
 }

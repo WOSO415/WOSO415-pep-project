@@ -16,6 +16,7 @@ import Service.AccountService;
 import Service.MessageService;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+import io.javalin.http.Handler;
 
 /**
  * TODO: You will need to write your own endpoints and handlers for your controller. The endpoints you will need can be
@@ -70,14 +71,15 @@ public class SocialMediaController {
     private void postLoginHandler(Context ctx) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         Account login = mapper.readValue(ctx.body(), Account.class);
-        Account verfUser = accountService.userLogin(login);
-        if(verfUser != null){
-            ctx.json(mapper.writeValueAsString(login));
-        } else {
+        Account loginInfo = accountService.accountDAO.userLogin(login);
+        if(loginInfo != null) {
+            ctx.json(mapper.writeValueAsString(loginInfo));
+        }else{
             ctx.status(401);
         }
     }
+   
+    };
  
 
 
-}

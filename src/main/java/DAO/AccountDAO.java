@@ -38,6 +38,7 @@ public Account insertUser(Account account) {
 }
 
     public Account userLogin(Account login) {
+
         Connection connection = ConnectionUtil.getConnection();
     try {
    
@@ -49,34 +50,25 @@ public Account insertUser(Account account) {
         preparedStatement.setString(1, login.getUsername());
         preparedStatement.setString(2, login.getPassword());
 
-        preparedStatement.executeUpdate();
-        ResultSet pkeyResultSet = preparedStatement.getGeneratedKeys();
-        if(pkeyResultSet.next()){
-            int generated_account_id = (int) pkeyResultSet.getLong(1);
-            return new Account(generated_account_id, login.getUsername(), login.getPassword());
-        }
+       ResultSet rs = preparedStatement.executeQuery() ;
+       
+        if(rs.next()) {
+            Account account = new Account(rs.getInt("account_id"), rs.getString("username"), rs.getString("password"));
+            System.out.println(account);
+           return account;
+        } 
+
     }catch(SQLException e){
         System.out.println(e.getMessage());
     }
     return null;
     }
-
-
-public boolean Login(String username, String password){
-    if (username.equals(username) && password.equals(password)) {
-        System.out.println("Login Successful!");
-        return true;
-    } else {
-        System.out.println("Invalid Username or Password");
-        return false;
-    }
-    } 
-    
+   
    
 }
 
 
-}
+
 
     
  
