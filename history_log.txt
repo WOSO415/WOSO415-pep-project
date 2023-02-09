@@ -1,7 +1,7 @@
-commit 9fe91e88ba95ee07c023a4d842d05dc35158e2c5
+commit 26b77bcf28ca3395d28658a45a5b603078fb35f4
 Author: Matt Worthy <mattworthy01@gmail.com>
-Date:   Wed Feb 8 22:07:27 2023 +0000
+Date:   Thu Feb 9 01:46:03 2023 +0000
 
-    workign on login
+    authentification tests complete
 
- 5 files changed, 314 insertions(+), 439 deletions(-)
+ 5 files changed, 1882 insertions(+), 284 deletions(-)

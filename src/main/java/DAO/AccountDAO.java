@@ -12,6 +12,7 @@ import Util.ConnectionUtil;
 
 public class AccountDAO {
 
+///////////////*User Sign Up*///////////////////////
 public Account insertUser(Account account) {
 
     Connection connection = ConnectionUtil.getConnection();
@@ -37,6 +38,7 @@ public Account insertUser(Account account) {
     return null;
 }
 
+///////////////*User Login*///////////////////////
     public Account userLogin(Account login) {
 
         Connection connection = ConnectionUtil.getConnection();
@@ -63,6 +65,8 @@ public Account insertUser(Account account) {
     }
     return null;
     }
+
+    
    
    
 }

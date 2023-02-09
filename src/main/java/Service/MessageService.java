@@ -14,15 +14,16 @@ public class MessageService {
         messageDAO = new MessageDAO();
     }
 
-    /*
-     * return all messages
-     */
-    public static List<Message> getAllMessages() {
-        return  messageDAO.getAllMessages();
-         
-       
-     }
+    ///////////////*Create Message*///////////////////////
+    public Message createMessage() {
 
-    public static void add(MessageService message) {
+        return messageDAO.newMessage(createMessage());
     }
+
+///////////////*Create Message*///////////////////////
+public List<Message> getAllMessages() {
+
+    return messageDAO.getAllMessages();
+}
+    
 }
