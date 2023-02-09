@@ -58,8 +58,11 @@ public class SocialMediaController {
 ////////////////////////////*Get MessagesByID*////////////////////////        
         app.get("/messages/{message_id}", this::getMessageByIdHandler);
 
+ ////////////////////////////*deleteMessagesByID*////////////////////////         
+        app.delete("/messages/{message_id}", this::deleteMessageByIdHandler);
 
-    
+////////////////////////////*Update Message By ID*//////////////////////// 
+        app.patch("/messages/{message_id}", this::updateMessageHandler);
        
 
         
@@ -125,5 +128,25 @@ private void getMessageByIdHandler(Context ctx) {
     ctx.status(200);
 }
  
+////////////////////////////*Delete Messages By Id*////////////////////////////
+private void deleteMessageByIdHandler(Context ctx) {
+
+    Message ctxCheck = messageService.deleteMessageByID(Integer.parseInt(ctx.pathParam("message_id")));
+    if (ctxCheck != null) {
+    ctx.json(ctxCheck);
+    }
+    ctx.status(200);
+}
+
+////////////////////////////*Update Message By Id*////////////////////////////
+private void updateMessageHandler(Context ctx) {
+Message ctxCheck = messageService.deleteMessageByID(Integer.parseInt(ctx.pathParam("message_id")));
+    if (ctxCheck != null) {
+    ctx.json(ctxCheck);
+    }
+    ctx.status(200);
+}
+
+
 }
 

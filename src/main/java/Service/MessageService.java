@@ -33,6 +33,18 @@ public Message getMessageById(int id) {
     return messageDAO.MessageById(id);
 }
 
+///////////////*Delete Message by ID*///////////////////////
+public Message deleteMessageByID(int id) {
+    
+    return messageDAO.deleteByID(id);
+}
+
+///////////////*Delete Message by ID*///////////////////////
+public Message getupdateByID(int id, Message updateMessage) {
+    
+    return messageDAO.updateByID(id, updateMessage);
+}
+
 
 
 

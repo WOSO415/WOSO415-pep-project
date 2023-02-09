@@ -1,7 +1,7 @@
-commit 90dd3c52da1cd5bd39541752306b1057db4cd441
+commit 3039b013c5d35b5323c3ec299cf76ca554a7f14e
 Author: Matt Worthy <mattworthy01@gmail.com>
-Date:   Thu Feb 9 04:23:16 2023 +0000
+Date:   Thu Feb 9 20:10:30 2023 +0000
 
-    making progress on message tests
+    starting delete tests
 
- 5 files changed, 2020 insertions(+), 252 deletions(-)
+ 7 files changed, 325 insertions(+), 2053 deletions(-)

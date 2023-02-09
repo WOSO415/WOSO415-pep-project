@@ -91,34 +91,59 @@ public Message MessageById(int id){
     return null;
 }
 
-
-public Message deleteMessage(Message message) {
-
+///////////////*Delete Message*///////////////////////
+public Message deleteByID(int id){
     Connection connection = ConnectionUtil.getConnection();
     try {
-   
-        String sql = "insert into message (message_text, posted_by) values (?, ?)" ;
-        PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
+        //Write SQL logic here
+        String sql = "delete from message where message_id = ?";
         
-        
-        preparedStatement.setString(1, message.getMessage_text());
-        preparedStatement.setInt(2, message.getPosted_by());
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-        preparedStatement.executeUpdate();
-        ResultSet pkeyResultSet = preparedStatement.getGeneratedKeys();
-        if(pkeyResultSet.next()){
-            int generated_message_id = (int) pkeyResultSet.getLong(1);
-            return new Message(generated_message_id, message.getMessage_text(), message.getPosted_by());
+        //write preparedStatement's setString and setInt methods here.
+        preparedStatement.setInt(1, id);
+        ResultSet rs = preparedStatement.executeQuery();
+        while(rs.next()){
+            Message message = new Message(
+                rs.getInt("message_id"),
+                rs.getInt("posted_by"),
+                rs.getString("message_text"),
+                rs.getLong("time_posted_epoch"));
+          
+            return message;
         }
     }catch(SQLException e){
         System.out.println(e.getMessage());
     }
     return null;
-
 }
 
+///////////////*Update Message*///////////////////////
+public Message updateByID(int id, Message updateMessage){
+    Connection connection = ConnectionUtil.getConnection();
+    
+    try {
+        //Write SQL logic here
+        String sql = "update set message_text = ? where message_id = ?";
+        
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
+        //write preparedStatement's setString and setInt methods here.
+        preparedStatement.setString(1, updateMessage.getMessage_text());
+        preparedStatement.setInt(1, id);
+        ResultSet rs = preparedStatement.executeUpdate();
+        while(rs.next()){
+            Message message = new Message(
+                rs.getInt("message_id"),
+                rs.getInt("posted_by"),
+                rs.getString("message_text"),
+                rs.getLong("time_posted_epoch"));
+          
+            return message;
+        }
+    }catch(SQLException e){
+        System.out.println(e.getMessage());
+    }
+    return null;
 }
-
-
+}
