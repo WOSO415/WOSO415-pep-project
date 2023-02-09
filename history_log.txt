@@ -1,7 +1,7 @@
-commit 9555894164efac70d575736eb074a862619a0cf5
+commit 2f0545304064138b073e402651f89db76e6d6609
 Author: Matt Worthy <mattworthy01@gmail.com>
-Date:   Thu Feb 9 02:49:41 2023 +0000
+Date:   Thu Feb 9 03:21:48 2023 +0000
 
-    Starting Message tests
+    working on messages
 
- 6 files changed, 298 insertions(+), 2000 deletions(-)
+ 5 files changed, 76 insertions(+), 69 deletions(-)

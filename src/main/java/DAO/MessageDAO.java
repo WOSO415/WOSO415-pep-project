@@ -1,10 +1,11 @@
 package DAO;
 
-import java.beans.Statement;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class MessageDAO {
             String sql = "insert into message (message_text, posted_by) values (?, ?)" ;
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
     
-            // preparedStatements
+            
             
             preparedStatement.setString(1, message.getMessage_text());
             preparedStatement.setInt(2, message.getPosted_by());
@@ -42,28 +43,26 @@ public class MessageDAO {
 }
 
 ///////////////*Get All Messages*///////////////////////
-public List<Message> getAllMessages(){
+public List<String> getAllMessages(){
     Connection connection = ConnectionUtil.getConnection();
-    List<Message> messages = new ArrayList<>();
+    List<String> message = new ArrayList<>();
     try {
         //Write SQL logic here
-        String sql = "select * from message";
-
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        ResultSet rs = preparedStatement.executeQuery();
+        String sql = "SELECT * FROM message";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
         while(rs.next()){
-            Message message = new Message(rs.getInt("message_id"), rs.getString("message"),
-                    rs.getString("arrival_city"));
-            flights.add(flight);
+            message.add(rs.getString("message"));
         }
     }catch(SQLException e){
-        System.out.println(e.getMessage());
+        e.printStackTrace();
     }
-    return flights;
+    System.out.println(message);
+    return message;
+
+
+
 }
-
-
-
 }
 
 
