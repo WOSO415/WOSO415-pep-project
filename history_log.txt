@@ -1,7 +1,7 @@
-commit 26b77bcf28ca3395d28658a45a5b603078fb35f4
+commit 9555894164efac70d575736eb074a862619a0cf5
 Author: Matt Worthy <mattworthy01@gmail.com>
-Date:   Thu Feb 9 01:46:03 2023 +0000
+Date:   Thu Feb 9 02:49:41 2023 +0000
 
-    authentification tests complete
+    Starting Message tests
 
- 5 files changed, 1882 insertions(+), 284 deletions(-)
+ 6 files changed, 298 insertions(+), 2000 deletions(-)

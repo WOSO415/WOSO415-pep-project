@@ -28,11 +28,11 @@
 Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_E ON PUBLIC.ACCOUNT(USERNAME NULLS FIRST) VALUES ( /* 1 */ 'user' )"; SQL statement:
 insert into account (username, password) values (?, ?) [23505-214]
 Account{account_id=1, username='user', password='password'}
-[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.726 s - in AuthIntegrationTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.121 s - in AuthIntegrationTest
 [INFO] Running MessagingIntegrationTest
-[ERROR] Tests run: 20, Failures: 19, Errors: 0, Skipped: 0, Time elapsed: 20.561 s <<< FAILURE! - in MessagingIntegrationTest
-[ERROR] MessagingIntegrationTest.postAccountAndMessageThenGetMessageTest  Time elapsed: 1.015 s  <<< FAILURE!
-java.lang.AssertionError: expected:<200> but was:<404>
+[ERROR] Tests run: 20, Failures: 19, Errors: 0, Skipped: 0, Time elapsed: 20.772 s <<< FAILURE! - in MessagingIntegrationTest
+[ERROR] MessagingIntegrationTest.postAccountAndMessageThenGetMessageTest  Time elapsed: 1.034 s  <<< FAILURE!
+java.lang.AssertionError: expected:<200> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -81,7 +81,7 @@ java.lang.AssertionError: expected:<200> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.deleteMessageNonExistentMessageTest  Time elapsed: 1.021 s  <<< FAILURE!
+[ERROR] MessagingIntegrationTest.deleteMessageNonExistentMessageTest  Time elapsed: 1.027 s  <<< FAILURE!
 java.lang.AssertionError: expected:<200> but was:<404>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
@@ -130,8 +130,8 @@ java.lang.AssertionError: expected:<200> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postAccountAndBlankMessage  Time elapsed: 1.031 s  <<< FAILURE!
-java.lang.AssertionError: expected:<400> but was:<404>
+[ERROR] MessagingIntegrationTest.postAccountAndBlankMessage  Time elapsed: 1.046 s  <<< FAILURE!
+java.lang.AssertionError: expected:<400> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -179,8 +179,8 @@ java.lang.AssertionError: expected:<400> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.patchMessageTest  Time elapsed: 1.031 s  <<< FAILURE!
-java.lang.AssertionError: expected:<200> but was:<404>
+[ERROR] MessagingIntegrationTest.patchMessageTest  Time elapsed: 1.043 s  <<< FAILURE!
+java.lang.AssertionError: expected:<200> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -229,8 +229,8 @@ java.lang.AssertionError: expected:<200> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postManyUsersAndMessagesThenGetAllMessages  Time elapsed: 1.03 s  <<< FAILURE!
-java.lang.AssertionError: expected:<200> but was:<404>
+[ERROR] MessagingIntegrationTest.postManyUsersAndMessagesThenGetAllMessages  Time elapsed: 1.046 s  <<< FAILURE!
+java.lang.AssertionError: expected:<200> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -280,8 +280,8 @@ java.lang.AssertionError: expected:<200> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postManyAccountsAndMessagesThenGetMessagesByAccountIdTest  Time elapsed: 1.03 s  <<< FAILURE!
-java.lang.AssertionError: expected:<200> but was:<404>
+[ERROR] MessagingIntegrationTest.postManyAccountsAndMessagesThenGetMessagesByAccountIdTest  Time elapsed: 1.044 s  <<< FAILURE!
+java.lang.AssertionError: expected:<200> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -332,7 +332,7 @@ java.lang.AssertionError: expected:<200> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
 [ERROR] MessagingIntegrationTest.deleteMessageTest  Time elapsed: 1.05 s  <<< FAILURE!
-java.lang.AssertionError: expected:<200> but was:<404>
+java.lang.AssertionError: expected:<200> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -381,8 +381,8 @@ java.lang.AssertionError: expected:<200> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postMessageNonExistentAccountTest  Time elapsed: 1.023 s  <<< FAILURE!
-java.lang.AssertionError: expected:<400> but was:<404>
+[ERROR] MessagingIntegrationTest.postMessageNonExistentAccountTest  Time elapsed: 1.024 s  <<< FAILURE!
+java.lang.AssertionError: expected:<400> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -430,8 +430,8 @@ java.lang.AssertionError: expected:<400> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.getMessageAfterPatchTest  Time elapsed: 1.055 s  <<< FAILURE!
-java.lang.AssertionError: expected:<200> but was:<404>
+[ERROR] MessagingIntegrationTest.getMessageAfterPatchTest  Time elapsed: 1.066 s  <<< FAILURE!
+java.lang.AssertionError: expected:<200> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -481,8 +481,8 @@ java.lang.AssertionError: expected:<200> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postAccountAndTooLongMessage  Time elapsed: 1.029 s  <<< FAILURE!
-java.lang.AssertionError: expected:<400> but was:<404>
+[ERROR] MessagingIntegrationTest.postAccountAndTooLongMessage  Time elapsed: 1.034 s  <<< FAILURE!
+java.lang.AssertionError: expected:<400> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -530,8 +530,8 @@ java.lang.AssertionError: expected:<400> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.patchMessageTooLongTest  Time elapsed: 1.028 s  <<< FAILURE!
-java.lang.AssertionError: expected:<200> but was:<404>
+[ERROR] MessagingIntegrationTest.patchMessageTooLongTest  Time elapsed: 1.082 s  <<< FAILURE!
+java.lang.AssertionError: expected:<200> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -580,7 +580,7 @@ java.lang.AssertionError: expected:<200> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.getMessagesByAccountIdEmpty  Time elapsed: 1.02 s  <<< FAILURE!
+[ERROR] MessagingIntegrationTest.getMessagesByAccountIdEmpty  Time elapsed: 1.027 s  <<< FAILURE!
 java.lang.AssertionError: expected:<200> but was:<404>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
@@ -629,8 +629,8 @@ java.lang.AssertionError: expected:<200> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.deletedMessageShouldNotExistTest  Time elapsed: 1.031 s  <<< FAILURE!
-java.lang.AssertionError: expected:<200> but was:<404>
+[ERROR] MessagingIntegrationTest.deletedMessageShouldNotExistTest  Time elapsed: 1.036 s  <<< FAILURE!
+java.lang.AssertionError: expected:<200> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -680,8 +680,8 @@ java.lang.AssertionError: expected:<200> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.patchMessageBlankTest  Time elapsed: 1.025 s  <<< FAILURE!
-java.lang.AssertionError: expected:<200> but was:<404>
+[ERROR] MessagingIntegrationTest.patchMessageBlankTest  Time elapsed: 1.029 s  <<< FAILURE!
+java.lang.AssertionError: expected:<200> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -730,7 +730,7 @@ java.lang.AssertionError: expected:<200> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.patchMessageNonExistentMessageTest  Time elapsed: 1.02 s  <<< FAILURE!
+[ERROR] MessagingIntegrationTest.patchMessageNonExistentMessageTest  Time elapsed: 1.037 s  <<< FAILURE!
 java.lang.AssertionError: expected:<400> but was:<404>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
@@ -779,8 +779,8 @@ java.lang.AssertionError: expected:<400> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postManyAccountsAndMessagesTest  Time elapsed: 1.027 s  <<< FAILURE!
-java.lang.AssertionError: expected:<200> but was:<404>
+[ERROR] MessagingIntegrationTest.postManyAccountsAndMessagesTest  Time elapsed: 1.032 s  <<< FAILURE!
+java.lang.AssertionError: expected:<200> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -829,7 +829,7 @@ java.lang.AssertionError: expected:<200> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.getAllMessagesEmptyTest  Time elapsed: 1.025 s  <<< FAILURE!
+[ERROR] MessagingIntegrationTest.getAllMessagesEmptyTest  Time elapsed: 1.03 s  <<< FAILURE!
 java.lang.AssertionError: expected:<200> but was:<404>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
@@ -878,8 +878,8 @@ java.lang.AssertionError: expected:<200> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postAccountAndMessageTest  Time elapsed: 1.023 s  <<< FAILURE!
-java.lang.AssertionError: expected:<200> but was:<404>
+[ERROR] MessagingIntegrationTest.postAccountAndMessageTest  Time elapsed: 1.031 s  <<< FAILURE!
+java.lang.AssertionError: expected:<200> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -927,8 +927,8 @@ java.lang.AssertionError: expected:<200> but was:<404>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postAccountAndMessageAndGetAllMessagesTest  Time elapsed: 1.025 s  <<< FAILURE!
-java.lang.AssertionError: expected:<200> but was:<404>
+[ERROR] MessagingIntegrationTest.postAccountAndMessageAndGetAllMessagesTest  Time elapsed: 1.024 s  <<< FAILURE!
+java.lang.AssertionError: expected:<200> but was:<500>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:647)
@@ -982,32 +982,32 @@ java.lang.AssertionError: expected:<200> but was:<404>
 [INFO] 
 [ERROR] Failures: 
 [ERROR]   MessagingIntegrationTest.deleteMessageNonExistentMessageTest:391 expected:<200> but was:<404>
-[ERROR]   MessagingIntegrationTest.deleteMessageTest:404->postAccountAndMessageTest:140 expected:<200> but was:<404>
-[ERROR]   MessagingIntegrationTest.deletedMessageShouldNotExistTest:426->deleteMessageTest:404->postAccountAndMessageTest:140 expected:<200> but was:<404>
+[ERROR]   MessagingIntegrationTest.deleteMessageTest:404->postAccountAndMessageTest:140 expected:<200> but was:<500>
+[ERROR]   MessagingIntegrationTest.deletedMessageShouldNotExistTest:426->deleteMessageTest:404->postAccountAndMessageTest:140 expected:<200> but was:<500>
 [ERROR]   MessagingIntegrationTest.getAllMessagesEmptyTest:70 expected:<200> but was:<404>
-[ERROR]   MessagingIntegrationTest.getMessageAfterPatchTest:490->patchMessageTest:465->postAccountAndMessageTest:140 expected:<200> but was:<404>
+[ERROR]   MessagingIntegrationTest.getMessageAfterPatchTest:490->patchMessageTest:465->postAccountAndMessageTest:140 expected:<200> but was:<500>
 [ERROR]   MessagingIntegrationTest.getMessagesByAccountIdEmpty:334 expected:<200> but was:<404>
-[ERROR]   MessagingIntegrationTest.patchMessageBlankTest:537->postAccountAndMessageTest:140 expected:<200> but was:<404>
+[ERROR]   MessagingIntegrationTest.patchMessageBlankTest:537->postAccountAndMessageTest:140 expected:<200> but was:<500>
 [ERROR]   MessagingIntegrationTest.patchMessageNonExistentMessageTest:454 expected:<400> but was:<404>
-[ERROR]   MessagingIntegrationTest.patchMessageTest:465->postAccountAndMessageTest:140 expected:<200> but was:<404>
-[ERROR]   MessagingIntegrationTest.patchMessageTooLongTest:512->postAccountAndMessageTest:140 expected:<200> but was:<404>
-[ERROR]   MessagingIntegrationTest.postAccountAndBlankMessage:196 expected:<400> but was:<404>
-[ERROR]   MessagingIntegrationTest.postAccountAndMessageAndGetAllMessagesTest:230->postAccountAndMessageTest:140 expected:<200> but was:<404>
-[ERROR]   MessagingIntegrationTest.postAccountAndMessageTest:140 expected:<200> but was:<404>
-[ERROR]   MessagingIntegrationTest.postAccountAndMessageThenGetMessageTest:207->postAccountAndMessageTest:140 expected:<200> but was:<404>
-[ERROR]   MessagingIntegrationTest.postAccountAndTooLongMessage:173 expected:<400> but was:<404>
-[ERROR]   MessagingIntegrationTest.postManyAccountsAndMessagesTest:254->postAccountAndMessageTest:140 expected:<200> but was:<404>
-[ERROR]   MessagingIntegrationTest.postManyAccountsAndMessagesThenGetMessagesByAccountIdTest:349->postManyAccountsAndMessagesTest:254->postAccountAndMessageTest:140 expected:<200> but was:<404>
-[ERROR]   MessagingIntegrationTest.postManyUsersAndMessagesThenGetAllMessages:298->postManyAccountsAndMessagesTest:254->postAccountAndMessageTest:140 expected:<200> but was:<404>
-[ERROR]   MessagingIntegrationTest.postMessageNonExistentAccountTest:95 expected:<400> but was:<404>
+[ERROR]   MessagingIntegrationTest.patchMessageTest:465->postAccountAndMessageTest:140 expected:<200> but was:<500>
+[ERROR]   MessagingIntegrationTest.patchMessageTooLongTest:512->postAccountAndMessageTest:140 expected:<200> but was:<500>
+[ERROR]   MessagingIntegrationTest.postAccountAndBlankMessage:196 expected:<400> but was:<500>
+[ERROR]   MessagingIntegrationTest.postAccountAndMessageAndGetAllMessagesTest:230->postAccountAndMessageTest:140 expected:<200> but was:<500>
+[ERROR]   MessagingIntegrationTest.postAccountAndMessageTest:140 expected:<200> but was:<500>
+[ERROR]   MessagingIntegrationTest.postAccountAndMessageThenGetMessageTest:207->postAccountAndMessageTest:140 expected:<200> but was:<500>
+[ERROR]   MessagingIntegrationTest.postAccountAndTooLongMessage:173 expected:<400> but was:<500>
+[ERROR]   MessagingIntegrationTest.postManyAccountsAndMessagesTest:254->postAccountAndMessageTest:140 expected:<200> but was:<500>
+[ERROR]   MessagingIntegrationTest.postManyAccountsAndMessagesThenGetMessagesByAccountIdTest:349->postManyAccountsAndMessagesTest:254->postAccountAndMessageTest:140 expected:<200> but was:<500>
+[ERROR]   MessagingIntegrationTest.postManyUsersAndMessagesThenGetAllMessages:298->postManyAccountsAndMessagesTest:254->postAccountAndMessageTest:140 expected:<200> but was:<500>
+[ERROR]   MessagingIntegrationTest.postMessageNonExistentAccountTest:95 expected:<400> but was:<500>
 [INFO] 
 [ERROR] Tests run: 27, Failures: 19, Errors: 0, Skipped: 0
 [INFO] 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  35.657 s
-[INFO] Finished at: 2023-02-09T01:46:41Z
+[INFO] Total time:  38.713 s
+[INFO] Finished at: 2023-02-09T02:50:23Z
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.0.0-M7:test (default-test) on project Challenges: There are test failures.
 [ERROR] 

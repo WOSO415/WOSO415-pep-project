@@ -41,12 +41,14 @@ public class SocialMediaController {
         Javalin app = Javalin.create();
         
        
-        //*registration//*
+////////////////////////////*Registration*////////////////////////////
         app.post("/register", this::postUserHandler);     
-        /*login*/
+////////////////////////////*Login*////////////////////////////
         app.post("/login", this::postLoginHandler);
-        /*create new message*/
+////////////////////////////*Create Message*////////////////////////////
         app.post("/messages", this::postMessagesHandler);
+////////////////////////////*Get All Messages*////////////////////////////
+        app.get("/messages", this::getAllMessagesHandler);
 
         
         
@@ -60,7 +62,7 @@ public class SocialMediaController {
      * @param context The Javalin Context object manages information about both the HTTP request and response.
      */
 
-    /*Signup Handler*/
+////////////////////////////*sign Up Handler*////////////////////////////
     private void postUserHandler(Context ctx) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         Account user = mapper.readValue(ctx.body(), Account.class);
@@ -72,7 +74,7 @@ public class SocialMediaController {
         }
     }
     
-    /*Login Handler*/
+////////////////////////////*Login Handler*////////////////////////////
     private void postLoginHandler(Context ctx) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         Account login = mapper.readValue(ctx.body(), Account.class);
@@ -83,7 +85,7 @@ public class SocialMediaController {
             ctx.status(401);
         }
     }
-    /*Create Messages Handler*/
+////////////////////////////*Create Message Handler*////////////////////////////
     private void postMessagesHandler(Context ctx) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         Account mess = mapper.readValue(ctx.body(), Account.class);
@@ -94,6 +96,7 @@ public class SocialMediaController {
             ctx.status(400);
         }
     }
+////////////////////////////*Get All Messages Handler*////////////////////////////    
    
     };
  

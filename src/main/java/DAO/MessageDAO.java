@@ -44,21 +44,24 @@ public class MessageDAO {
 ///////////////*Get All Messages*///////////////////////
 public List<Message> getAllMessages(){
     Connection connection = ConnectionUtil.getConnection();
-    List<Message> message = new ArrayList<>();
+    List<Message> messages = new ArrayList<>();
     try {
         //Write SQL logic here
-        String sql = "SELECT * FROM message";
+        String sql = "select * from message";
+
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         ResultSet rs = preparedStatement.executeQuery();
         while(rs.next()){
-            Message messages = new Message(0, 0, rs.getString("message_text"), 0);
-            message.add(messages);
+            Message message = new Message(rs.getInt("message_id"), rs.getString("message"),
+                    rs.getString("arrival_city"));
+            flights.add(flight);
         }
     }catch(SQLException e){
         System.out.println(e.getMessage());
     }
-    return message;
+    return flights;
 }
+
 
 
 }
