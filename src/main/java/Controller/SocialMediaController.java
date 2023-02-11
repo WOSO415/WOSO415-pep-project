@@ -8,6 +8,8 @@ package Controller;
 
 
 
+import java.sql.SQLException;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -63,6 +65,11 @@ public class SocialMediaController {
 
 ////////////////////////////*Update Message By ID*//////////////////////// 
         app.patch("/messages/{message_id}", this::updateMessageHandler);
+
+        app.get("/accounts/{account_id}/messages", this::getMessageAccountHandler);
+
+
+        
        
 
         
@@ -129,7 +136,7 @@ private void getMessageByIdHandler(Context ctx) {
 }
  
 ////////////////////////////*Delete Messages By Id*////////////////////////////
-private void deleteMessageByIdHandler(Context ctx) {
+private void deleteMessageByIdHandler(Context ctx) throws NumberFormatException, SQLException   {
 
     Message ctxCheck = messageService.deleteMessageByID(Integer.parseInt(ctx.pathParam("message_id")));
     if (ctxCheck != null) {
@@ -138,15 +145,30 @@ private void deleteMessageByIdHandler(Context ctx) {
     ctx.status(200);
 }
 
-////////////////////////////*Update Message By Id*////////////////////////////
-private void updateMessageHandler(Context ctx) {
-Message ctxCheck = messageService.deleteMessageByID(Integer.parseInt(ctx.pathParam("message_id")));
-    if (ctxCheck != null) {
-    ctx.json(ctxCheck);
+////////////////////////////*Update By Id*////////////////////////////
+
+private void updateMessageHandler(Context ctx) throws JsonProcessingException {
+    ObjectMapper mapper = new ObjectMapper();
+    Message message = mapper.readValue(ctx.body(), Message.class);
+
+    int id = Integer.parseInt(ctx.pathParam("message_id"));
+
+    Message newMessage = messageService.updateMessage(id, message);
+
+    System.out.println(newMessage);
+    if(newMessage == null) {
+        ctx.status(400);
+    }else{
+        ctx.json(mapper.writeValueAsString(newMessage));
     }
-    ctx.status(200);
+
 }
 
+private void getMessageAccountHandler(Context ctx) {
+    int id = Integer.parseInt(ctx.pathParam("account_id"));
+
+    ctx.json(messageService.geMessageAccount(id));
+}
 
 }
 

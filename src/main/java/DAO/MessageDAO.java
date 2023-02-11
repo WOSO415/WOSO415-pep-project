@@ -9,14 +9,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.h2.util.json.JSONObject;
 
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
+
+
 
 import Model.Message;
 
 import Util.ConnectionUtil;
-import net.bytebuddy.dynamic.scaffold.MethodRegistry.Prepared;
+
 
 public class MessageDAO {
     
@@ -51,16 +51,22 @@ public class MessageDAO {
 }
 
 ///////////////*Get All Messages*///////////////////////
-public List<String> getAllMessages(){
+public List<Message> getAllMessages(){
     Connection connection = ConnectionUtil.getConnection();
-    List<String> message = new ArrayList<>();
+    List<Message> message = new ArrayList<>();
     try {
         //Write SQL logic here
         String sql = "SELECT * FROM message";
         PreparedStatement ps = connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
-            message.add(rs.getString("message"));
+            Message anything = new Message(
+                
+            rs.getInt("message_id"),
+            rs.getInt("posted_by"),
+            rs.getString("message_text"),
+            rs.getLong("time_posted_epoch"));
+            message.add(anything);
         }
     }catch(SQLException e){
         e.printStackTrace();
@@ -97,62 +103,85 @@ public Message MessageById(int id){
 }
 
 ///////////////*Delete Message*///////////////////////
-public Message deleteByID(String message_id){
+/**
+ * @param id
+ * @return 
+ */
+public Message DeleteById(int id){
     Connection connection = ConnectionUtil.getConnection();
     try {
         //Write SQL logic here
-        String sql = "select message_text from message where message_id = ?";
+        String sql = "delete from message where message_id = ?";
         
-        PreparedStatement selectStatement = connection.prepareStatement(sql);
+        PreparedStatement ps = connection.prepareStatement(sql);
 
         //write preparedStatement's setString and setInt methods here.
-        selectStatement.setString(1, message_id);
-        ResultSet rs = selectStatement.executeQuery();
-        if (rs.next()) {
-           String messageText = rs.getString("message_text");
-            PreparedStatement deleteStatement = connection.prepareStatement("delete from message where message_id = ?");
-            deleteStatement.setString(1, message_id);
-            deleteStatement.executeUpdate();
+        ps.setInt(1, id);
 
-            connection.close();
+        int rs = ps.executeUpdate();
 
-            ctx.status(200);
-            ctx.result(new JSONObject.put("message_text", messageText).toString());
-        } else {
-            ctx.status(404);
-            ctx.result("Message not found");
-                  
-        });
-
-    }
-
-
-///////////////*Update Message*///////////////////////
-public Message updateByID(int id, Message updateMessage){
-    Connection connection = ConnectionUtil.getConnection();
-    
-    try {
-        //Write SQL logic here
-        String sql = "update set message_text = ? where message_id = ?";
+        System.out.println("Number of affected records: " + rs);
         
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-        //write preparedStatement's setString and setInt methods here.
-        preparedStatement.setString(1, updateMessage.getMessage_text());
-        preparedStatement.setInt(1, id);
-        ResultSet rs = preparedStatement.executeUpdate();
-        while(rs.next()){
-            Message message = new Message(
-                rs.getInt("message_id"),
-                rs.getInt("posted_by"),
-                rs.getString("message_text"),
-                rs.getLong("time_posted_epoch"));
           
-            return message;
-        }
+            
+        
     }catch(SQLException e){
         System.out.println(e.getMessage());
     }
     return null;
+   
+}
+        
+        
+
+    
+
+
+///////////////*Update Message*///////////////////////
+
+public Message updateMessage(int id, Message message) {
+    Connection connection = ConnectionUtil.getConnection();
+    try {
+        //Write SQL logic here
+        String sql = "update message set message_text = ? where message_id = ?;";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        //write PreparedStatement setString and setInt methods here.
+        preparedStatement.setString(1, message.getMessage_text());
+        
+        preparedStatement.setInt(2, id);
+
+        preparedStatement.executeUpdate();
+        return MessageById(id);
+    }catch(SQLException e){
+        System.out.println(e.getMessage());
+    }
+    return null;
+}
+
+///////////////*Get All From Particular User*///////////////////////
+public List<Message> getMessageAccount(int id){
+    Connection connection = ConnectionUtil.getConnection();
+    List<Message> message = new ArrayList<>();
+    try {
+        //Write SQL logic here
+        String sql = "SELECT * FROM message where posted_by = ? ";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            Message anything = new Message(
+                
+            rs.getInt("message_id"),
+            rs.getInt("posted_by"),
+            rs.getString("message_text"),
+            rs.getLong("time_posted_epoch"));
+            message.add(anything);
+        }
+    }catch(SQLException e){
+        e.printStackTrace();
+    }
+    System.out.println(message);
+    return message;
 }
 }

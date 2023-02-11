@@ -1,5 +1,6 @@
 package Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -23,7 +24,7 @@ public class MessageService {
     }
 
 ///////////////*Get All Messages*///////////////////////
-public List<String> getAllMessagesList() {
+public List<Message> getAllMessagesList() {
 
     return messageDAO.getAllMessages();
 }
@@ -35,16 +36,32 @@ public Message getMessageById(int id) {
 
 ///////////////*Delete Message by ID*///////////////////////
 public Message deleteMessageByID(int id) {
-    
-    return messageDAO.deleteByID(id);
+    Message messageFromDb = messageDAO.MessageById(id);
+
+    if (messageFromDb == null) return null;
+    messageDAO.DeleteById(id);
+
+    return messageFromDb;
 }
 
-///////////////*Delete Message by ID*///////////////////////
-public Message getupdateByID(int id, Message updateMessage) {
+
+///////////////*Update Message*///////////////////////
+public Message updateMessage(int id, Message message) {
     
-    return messageDAO.updateByID(id, updateMessage);
+        if (message.message_text == "" || message.message_text.length() > 255) {
+            return null;
+        }
+    return messageDAO.updateMessage(id, message);
+    
+   
 }
 
+///////////////*Get All From Particular User*///////////////////////
+
+public List<Message> geMessageAccount(int id) {
+    
+    return messageDAO.getMessageAccount(id);
+}
 
 
 
