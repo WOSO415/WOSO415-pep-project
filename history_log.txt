@@ -1,7 +1,7 @@
-commit 2197e2d0a5da9edb3b5997b09680240719793b18
+commit 9617faad2e3c4c243f353982400d6281709c2ef1
 Author: Matt Worthy <mattworthy01@gmail.com>
-Date:   Thu Feb 9 23:08:28 2023 +0000
+Date:   Sat Feb 11 20:41:24 2023 +0000
 
-    working on delete statements
+    Compete
 
- 4 files changed, 120 insertions(+), 122 deletions(-)
+ 5 files changed, 237 insertions(+), 144 deletions(-)
